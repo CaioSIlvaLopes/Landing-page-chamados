@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deskify — Sistema All-in-One de Chamados, Ativos e Despesas</title>
+    <meta name="description" content="O controle total do seu suporte, ativos e despesas. Abra chamados, rastreie equipamentos (ITAM) e controle custos operacionais em uma única plataforma inteligente.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logos/logo-sem-fundo-removebg-fav.png">
+    <link rel="apple-touch-icon" href="assets/logos/logo-sem-fundo-removebg-fav.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload e Folha de Estilos de Fontes do Google (Inter) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Configuração do Tailwind CSS CDN (Tema, Cores e Keyframes) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            950: '#020617', // Midnight
+                            900: '#0a0f1e',
+                            800: '#0f172a',
+                            700: '#1e293b',
+                        },
+                        aurora: {
+                            indigo: '#f97316',
+                            fuchsia: '#3b82f6',
+                            teal: '#38bdf8',
+                            blue: '#1d4ed8',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'orbit': 'orbit 20s linear infinite',
+                        'orbit-reverse': 'orbitReverse 25s linear infinite',
+                        'slide-in-up': 'slideInUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.05)' },
+                        },
+                        orbit: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg)' },
+                        },
+                        orbitReverse: {
+                            '0%': { transform: 'rotate(360deg)' },
+                            '100%': { transform: 'rotate(0deg)' },
+                        },
+                        slideInUp: {
+                            '0%': { opacity: '0.35', transform: 'translateY(28px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Folha de Estilos Customizada Principal (style.css) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="font-inter antialiased selection:bg-orange-500/30 selection:text-orange-200">
+
+    <!-- ==================================================================== -->
+    <!-- BARRA DE NAVEGAÇÃO SUPERIOR (NAVBAR)                                 -->
+    <!-- ==================================================================== -->
+    <nav id="navbar" class="nav-glass fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group py-1">
+                    <img src="assets/logos/logo-sem-fundo-removebg-fav.png" alt="Deskify Logo" class="h-[4rem] w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                </a>
+
+                <!-- Links da Navegação Principal (Desktop) -->
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#plataforma" class="text-sm font-medium text-slate-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all" data-translate="nav_plataforma">Plataforma</a>
+                    <a href="#estatisticas" class="text-sm font-medium text-slate-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all" data-translate="nav_impacto">Impacto</a>
+                    <a href="#integracoes" class="text-sm font-medium text-slate-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all" data-translate="nav_integracoes">Integrações</a>
+                    <a href="#infraestrutura" class="text-sm font-medium text-slate-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all" data-translate="nav_infraestrutura">Infraestrutura</a>
+                    <a href="#planos" class="text-sm font-medium text-slate-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all" data-translate="nav_planos">Planos</a>
+                    <a href="#testemunhos" class="text-sm font-medium text-slate-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all" data-translate="nav_testemunhos">Testemunhos</a>
+                </div>
+
+                <!-- Botões de Ação e Alternância de Idioma (Desktop) -->
+                <div class="hidden lg:flex items-center gap-4">
+                    <button id="lang-toggle-btn" class="lang-toggle-btn" onclick="toggleLanguage()" aria-label="Switch language">
+                        <span class="lang-flag" id="lang-flag">🇧🇷</span>
+                        <span class="lang-label" id="lang-label">PT</span>
+                        <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4.97 0-9 2.239-9 5s4.03 5 9 5 9-2.239 9-5-4.03-5-9-5zM3 8c0 2.761 4.03 5 9 5s9-2.239 9-5M3 13c0 2.761 4.03 5 9 5s9-2.239 9-5"/></svg>
+                    </button>
+                    <a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors" data-translate="nav_login">Login</a>
+                    <a href="#contacto" class="btn-glow text-sm font-semibold text-white px-6 py-2.5 rounded-full" data-translate="nav_cta">
+                        Pedir Demonstração
+                    </a>
+                </div>
+
+                <!-- Botão Hamburger Mobile (< 1024px) -->
+                <button id="mobile-menu-btn" class="lg:hidden p-2.5 rounded-xl bg-slate-900/80 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700 transition-all focus:outline-none focus:ring-2 focus:ring-orange-500/50" aria-label="Abrir menu de navegação">
+                    <svg id="hamburger-icon" class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <svg id="close-icon" class="w-6 h-6 hidden transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Gaveta Mobile / Tablet (Drawer Glassmorphism) -->
+        <div id="mobile-menu" class="lg:hidden hidden border-t border-slate-800/80 bg-dark-950/95 backdrop-blur-2xl transition-all duration-300 overflow-hidden max-h-0 opacity-0 shadow-2xl">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-3">
+                <a href="#plataforma" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/40 hover:bg-slate-800/60 border border-slate-800/50 text-slate-200 hover:text-white font-medium text-base transition-all">
+                    <span class="w-8 h-8 rounded-lg bg-orange-500/15 flex items-center justify-center text-orange-400 shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                    </span>
+                    <span data-translate="nav_plataforma">Plataforma All-in-One</span>
+                </a>
+                <a href="#estatisticas" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/40 hover:bg-slate-800/60 border border-slate-800/50 text-slate-200 hover:text-white font-medium text-base transition-all">
+                    <span class="w-8 h-8 rounded-lg bg-blue-500/15 flex items-center justify-center text-blue-400 shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </span>
+                    <span data-translate="nav_impacto">Métricas de Impacto</span>
+                </a>
+                <a href="#integracoes" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/40 hover:bg-slate-800/60 border border-slate-800/50 text-slate-200 hover:text-white font-medium text-base transition-all">
+                    <span class="w-8 h-8 rounded-lg bg-teal-500/15 flex items-center justify-center text-teal-400 shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </span>
+                    <span data-translate="nav_integracoes">Ecossistema & Integrações</span>
+                </a>
+                <a href="#infraestrutura" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/40 hover:bg-slate-800/60 border border-slate-800/50 text-slate-200 hover:text-white font-medium text-base transition-all">
+                    <span class="w-8 h-8 rounded-lg bg-purple-500/15 flex items-center justify-center text-purple-400 shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </span>
+                    <span data-translate="nav_infraestrutura">Infraestrutura Global</span>
+                </a>
+                <a href="#planos" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/40 hover:bg-slate-800/60 border border-slate-800/50 text-slate-200 hover:text-white font-medium text-base transition-all">
+                    <span class="w-8 h-8 rounded-lg bg-rose-500/15 flex items-center justify-center text-rose-400 shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </span>
+                    <span data-translate="nav_planos">Planos & Investimento</span>
+                </a>
+                <a href="#testemunhos" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-900/40 hover:bg-slate-800/60 border border-slate-800/50 text-slate-200 hover:text-white font-medium text-base transition-all">
+                    <span class="w-8 h-8 rounded-lg bg-amber-500/15 flex items-center justify-center text-amber-400 shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
+                    </span>
+                    <span data-translate="nav_testemunhos">Testemunhos Reais</span>
+                </a>
+
+                <div class="pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row gap-3">
+                    <button class="lang-toggle-btn w-full py-3 justify-center" onclick="toggleLanguage()" aria-label="Switch language">
+                        <span class="lang-flag" id="lang-flag-mobile">🇧🇷</span>
+                        <span class="lang-label" id="lang-label-mobile">PT</span>
+                        <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c-4.97 0-9 2.239-9 5s4.03 5 9 5 9-2.239 9-5-4.03-5-9-5zM3 8c0 2.761 4.03 5 9 5s9-2.239 9-5M3 13c0 2.761 4.03 5 9 5s9-2.239 9-5"/></svg>
+                    </button>
+                    <a href="#" class="w-full py-3.5 px-4 rounded-xl bg-slate-900 border border-slate-800 text-center font-semibold text-sm text-slate-200 hover:text-white transition-all" data-translate="nav_login">Login</a>
+                    <a href="#contacto" class="mobile-nav-link btn-glow w-full py-3.5 px-4 rounded-xl text-center font-semibold text-sm text-white shadow-lg shadow-orange-500/20" data-translate="nav_cta">Pedir Demonstração</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================================================================== -->
+    <!-- SEÇÃO 1: HERO PRINCIPAL COM ESFERA 3D                                -->
+    <!-- ==================================================================== -->
+    <section id="hero" class="relative min-h-screen flex flex-col pt-20 overflow-hidden bg-dark-950">
+        <!-- Efeitos de Brilho de Fundo -->
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-orange-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px] pointer-events-none"></div>
+
+        <!-- Container da Esfera 3D (Three.js) -->
+        <div class="absolute inset-0 z-1 flex items-center justify-center pointer-events-auto">
+            <div id="sphere-container" class="w-full h-full relative cursor-grab opacity-80"></div>
+        </div>
+
+        <div class="relative z-10 flex-1 flex flex-col justify-center max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full pointer-events-none py-20">
+            <div class="flex flex-col max-w-3xl animate-slide-in-up">
+                <!-- Badge Hero -->
+                <div class="flex items-center gap-3 mb-6 pointer-events-auto w-fit bg-slate-900/50 border border-slate-700/50 rounded-full py-1.5 px-4 backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                    <span class="text-xs sm:text-sm tracking-widest uppercase text-orange-300 font-semibold" data-t="hero-badge">A plataforma definitiva para TI e Operações</span>
+                </div>
+
+                <!-- Título Principal -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold tracking-tight leading-[1.15] mb-6 text-white pointer-events-auto" data-t="hero-h1">
+                    O controle total <br>
+                    do seu <span class="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-blue-400">suporte, ativos</span> e despesas.
+                </h1>
+
+                <!-- Subtítulo -->
+                <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mb-10 leading-relaxed pointer-events-auto font-light" data-t="hero-sub">
+                    Pare de usar planilhas dispersas e sistemas isolados. Abra chamados, rastreie equipamentos e controle os custos operacionais da sua empresa em uma única plataforma inteligente e unificada.
+                </p>
+
+                <!-- Botões de Ação Hero -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 pointer-events-auto w-full sm:w-fit mb-12">
+                    <a href="#contacto" class="btn-glow inline-flex items-center justify-center gap-3 text-white text-base font-semibold px-8 py-4 rounded-full transition-all duration-300 w-full sm:w-auto">
+                        <span data-t="hero-cta1">Começar agora</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                    <a href="#plataforma" class="inline-flex items-center justify-center gap-2 text-base font-medium text-white px-8 py-4 rounded-full border border-slate-700 hover:border-slate-500 hover:bg-slate-800/50 transition-all duration-300 backdrop-blur-md w-full sm:w-auto" data-t="hero-cta2">
+                        Explorar recursos
+                    </a>
+                </div>
+
+                <!-- Ticker de Estatísticas Rápidas -->
+                <div class="pt-8 border-t border-slate-800/80 grid grid-cols-2 lg:grid-cols-4 gap-6 text-xs sm:text-sm text-slate-400 font-medium pointer-events-auto">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
+                        <span class="text-lg sm:text-xl font-bold text-orange-400">300%</span>
+                        <span class="text-slate-300" data-t="hero-stat1">Maior Controle Operacional</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
+                        <span class="text-lg sm:text-xl font-bold text-blue-400">100%</span>
+                        <span class="text-slate-300" data-t="hero-stat2">Visibilidade de Ativos e Licenças</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
+                        <span class="text-lg sm:text-xl font-bold text-white">0</span>
+                        <span class="text-slate-300" data-t="hero-stat3">Planilhas Necessárias</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-2">
+                        <span class="text-lg sm:text-xl font-bold text-purple-400">98%</span>
+                        <span class="text-slate-300" data-t="hero-stat4">Aprovação de Despesas no Prazo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- SEÇÃO 2: PLATAFORMA E MÓDULOS UNIFICADOS                             -->
+    <!-- ==================================================================== -->
+    <section id="plataforma" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/8 rounded-full blur-[150px]"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="section-badge mx-auto justify-center mb-4" data-t="sec2-badge">Plataforma All-in-One</div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4" data-t="sec2-h2">
+                    EXPLORE OS <span class="gradient-text">MÓDULOS UNIFICADOS</span>
+                </h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-base sm:text-lg" data-t="sec2-desc">
+                    A sinergia perfeita entre suporte técnico, rastreamento de equipamentos e controle financeiro.
+                </p>
+            </div>
+
+            <!-- Grade de Cards dos Módulos -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+
+                <!-- Módulo 1 (Core): Central de Chamados Inteligente -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 glow-hover reveal lg:row-span-2 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-600/30 to-orange-800/30 flex items-center justify-center border border-orange-500/20">
+                                <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9 10.172L5.464 6.636m3.536 8.364l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <span class="text-xs font-semibold tracking-wider text-orange-400 uppercase" data-t="c1-badge">Core</span>
+                        </div>
+
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-3" data-t="c1-h3">Central de Chamados Inteligente</h3>
+                        <p class="text-slate-400 text-sm sm:text-base mb-6 leading-relaxed" data-t="c1-desc">
+                            Transforme a experiência de suporte com SLAs automáticos, portal self-service intuitivo para o colaborador e roteamento automático via Inteligência Artificial que envia o chamado diretamente ao especialista certo.
+                        </p>
+
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-sm text-slate-300" data-t="c1-li1">Roteamento automático de tickets via IA</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-sm text-slate-300" data-t="c1-li2">Portal self-service intuitivo 24/7</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-sm text-slate-300" data-t="c1-li3">SLAs automáticos com escalonamento em tempo real</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-6 h-6 rounded-full bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-3.5 h-3.5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                </div>
+                                <span class="text-sm text-slate-300" data-t="c1-li4">Histórico omnicanal completo por colaborador</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors group">
+                        <span data-t="c1-btn">Conheça o módulo Core</span>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Módulo 2 (Engine): Rastreamento de Ativos (ITAM) -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 glow-hover reveal">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600/30 to-blue-800/30 flex items-center justify-center border border-blue-500/20">
+                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-semibold tracking-wider text-blue-400 uppercase" data-t="c2-badge">Engine</span>
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-3" data-t="c2-h3">Rastreamento de Ativos (ITAM)</h3>
+                    <p class="text-slate-400 text-sm sm:text-base mb-5 leading-relaxed" data-t="c2-desc">
+                        Saiba exatamente quem usa qual notebook, monitor, smartphone ou licença de software. Controle todo o ciclo de vida com emissão e assinatura digital de termos de responsabilidade.
+                    </p>
+
+                    <!-- Indicador Visual do ITAM -->
+                    <div class="bg-dark-700/60 rounded-xl p-4 border border-slate-700/30">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs text-slate-400 font-mono" data-t="c2-ind-1">Ativo #MBP-2026-04</span>
+                            <span class="text-xs text-emerald-400 font-medium flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> <span data-t="c2-ind-2">Alocado e Ativo</span>
+                            </span>
+                        </div>
+                        <div class="w-full bg-dark-800 rounded-lg p-2.5 border border-slate-700/50 mb-2 flex items-center justify-between">
+                            <span class="text-xs text-slate-200 font-medium" data-t="c2-ind-3">MacBook Pro M3 / Licença Figma Pro</span>
+                            <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded" data-t="c2-ind-4">Engenharia</span>
+                        </div>
+                        <div class="flex justify-between items-center text-[11px]">
+                            <span class="text-slate-400"><span data-t="c2-ind-5">Usuário:</span> <strong class="text-white">Carlos Silva</strong></span>
+                            <span class="text-orange-400 font-medium" data-t="c2-ind-6">Termo Assinado ✓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Módulo 3 (Analytics): Gestão de Despesas e Custos -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 glow-hover reveal">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500/30 to-blue-700/30 flex items-center justify-center border border-orange-500/20">
+                            <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-semibold tracking-wider text-orange-400 uppercase" data-t="c3-badge">Analytics</span>
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-3" data-t="c3-h3">Gestão de Despesas e Custos</h3>
+                    <p class="text-slate-400 text-sm sm:text-base mb-5 leading-relaxed" data-t="c3-desc">
+                        Vincule custos operacionais e compras diretamente aos chamados de suporte. Gerencie reembolsos de colaboradores e orçamentos de TI através de fluxos de aprovação multinível ágeis e transparentes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- SEÇÃO 3: ESTATÍSTICAS E MÉTRICAS DE IMPACTO                          -->
+    <!-- ==================================================================== -->
+    <section id="estatisticas" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden border-y border-slate-800/60 bg-dark-900/90">
+        <!-- Textura de Grid -->
+        <div class="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_85%,transparent_100%)] pointer-events-none overflow-hidden">
+            <div class="absolute inset-[-48px] bg-dot-texture opacity-30 animate-grid-translate pointer-events-none"></div>
+        </div>
+        
+        <!-- Camada Interativa do Scanlight/Spotlight -->
+        <div id="stats-interactive-layer" class="absolute top-0 left-0 w-[500px] h-[500px] -ml-[250px] -mt-[250px] rounded-full pointer-events-none opacity-0 transition-opacity duration-500 ease-out z-1"
+             style="background: radial-gradient(circle, rgba(249, 115, 22, 0.22) 0%, rgba(59, 130, 246, 0.08) 45%, transparent 70%); filter: blur(15px); will-change: transform; transform: translate3d(-1000px, -1000px, 0);">
+        </div>
+
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-orange-600/10 via-blue-600/15 to-sky-500/10 rounded-full blur-[130px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-16 reveal">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                    <div>
+                        <div class="section-badge mb-4" data-t="sec3-badge">Métricas de Impacto</div>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight" data-t="sec3-h2">
+                            RESULTADOS COMPROVADOS NA<br><span class="gradient-text">SUA OPERAÇÃO</span>
+                        </h2>
+                    </div>
+                    <p class="text-slate-400 max-w-md text-base" data-t="sec3-desc">
+                        O poder de gerenciar chamados, ativos e financeiro na mesma plataforma unificada.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Grade de Métricas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 reveal">
+                <!-- Métrica 1 -->
+                <div class="stat-card rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 group">
+                    <h4 class="text-sm font-semibold text-purple-400 mb-1" data-t="stat1-h4">Chamados & SLA</h4>
+                    <p class="text-xs text-slate-500 mb-4" data-t="stat1-desc">Taxa de resolução de tickets e suporte dentro do prazo SLA</p>
+                    <div class="text-4xl sm:text-5xl font-extrabold text-white counter-value" data-target="99"><span class="counter-num">0</span><span class="text-purple-400">%</span></div>
+                </div>
+
+                <!-- Métrica 2 -->
+                <div class="stat-card rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 group">
+                    <h4 class="text-sm font-semibold text-purple-400 mb-1" data-t="stat2-h4">Ativos & ITAM</h4>
+                    <p class="text-xs text-slate-500 mb-4" data-t="stat2-desc">Visibilidade e rastreio em tempo real de equipamentos e licenças</p>
+                    <div class="text-4xl sm:text-5xl font-extrabold text-white counter-value" data-target="100"><span class="counter-num">0</span><span class="text-cyan-400">%</span></div>
+                </div>
+
+                <!-- Métrica 3 -->
+                <div class="stat-card rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 group">
+                    <h4 class="text-sm font-semibold text-purple-400 mb-1" data-t="stat3-h4">Despesas de TI</h4>
+                    <p class="text-xs text-slate-500 mb-4" data-t="stat3-desc">Aprovação de reembolsos e custos operacionais dentro do prazo</p>
+                    <div class="text-4xl sm:text-5xl font-extrabold text-white counter-value" data-target="98"><span class="counter-num">0</span><span class="text-purple-400">%</span></div>
+                </div>
+
+                <!-- Métrica 4 -->
+                <div class="stat-card rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 group">
+                    <h4 class="text-sm font-semibold text-purple-400 mb-1" data-t="stat4-h4">Ecossistema</h4>
+                    <p class="text-xs text-slate-500 mb-4" data-t="stat4-desc">Conexões nativas com ERPs, financeiro e ferramentas de TI</p>
+                    <div class="text-4xl sm:text-5xl font-extrabold text-white counter-value" data-target="50"><span class="counter-num">0</span><span class="text-cyan-400">+</span></div>
+                </div>
+
+                <!-- Métrica 5 -->
+                <div class="stat-card rounded-2xl p-6 hover:border-purple-500/30 transition-all duration-300 group sm:col-span-2 lg:col-span-1 xl:col-span-1">
+                    <h4 class="text-sm font-semibold text-purple-400 mb-1" data-t="stat5-h4">Satisfação Geral</h4>
+                    <p class="text-xs text-slate-500 mb-4" data-t="stat5-desc">Índice de aprovação dos colaboradores em suporte e reembolsos</p>
+                    <div class="text-4xl sm:text-5xl font-extrabold text-white counter-value" data-target="98"><span class="counter-num">0</span><span class="text-purple-400">%</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- SEÇÃO 4: INTEGRAÇÕES INTELIGENTES E WORKFLOW                         -->
+    <!-- ==================================================================== -->
+    <section id="integracoes" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-dark-950 via-slate-950 to-dark-950"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-950/10 to-transparent"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-600/8 rounded-full blur-[150px]"></div>
+
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-20 reveal">
+                <div class="section-badge mx-auto justify-center mb-4" data-t="sec4-badge">Integrações</div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4" data-t="sec4-h2">
+                    INTEGRAÇÕES INTELIGENTES.<br>
+                    SIMPLIFIQUE O SEU <span class="gradient-text-teal">WORKFLOW</span>
+                </h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-base sm:text-lg" data-t="sec4-desc">
+                    Conecte o HelpDesk Pro ao seu ERP, sistemas contábeis, WhatsApp, Slack e muito mais.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 reveal">
+                <div class="glass-card rounded-2xl p-6 text-center hover:border-orange-500/40 transition-all duration-300">
+                    <span class="text-sm font-semibold text-white">SAP / TOTVS</span>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:border-orange-500/40 transition-all duration-300">
+                    <span class="text-sm font-semibold text-white">WhatsApp</span>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:border-orange-500/40 transition-all duration-300">
+                    <span class="text-sm font-semibold text-white">Slack / Teams</span>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:border-orange-500/40 transition-all duration-300">
+                    <span class="text-sm font-semibold text-white">Google Workspace</span>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:border-orange-500/40 transition-all duration-300">
+                    <span class="text-sm font-semibold text-white">REST API</span>
+                </div>
+                <div class="glass-card rounded-2xl p-6 text-center hover:border-orange-500/40 transition-all duration-300">
+                    <span class="text-sm font-semibold text-white">Webhooks</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- SEÇÃO 4.5: CARROSSEL DE PRÉ-VISUALIZAÇÃO DO SISTEMA (SHOWCASE)       -->
+    <!-- ==================================================================== -->
+    <section id="showcase-sistema" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden border-t border-slate-800/60 bg-dark-900/30 backdrop-blur-md">
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] bg-gradient-to-tr from-orange-600/10 via-amber-600/10 to-blue-600/15 rounded-full blur-[160px] pointer-events-none"></div>
+
+        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 reveal">
+                <div class="section-badge mx-auto justify-center mb-4" data-t="showcase-badge">Interface do Sistema</div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4" data-t="showcase-h2">
+                    EXPERIÊNCIA <span class="gradient-text">VISUAL PREMIUM</span>
+                </h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-base sm:text-lg" data-t="showcase-desc">
+                    Conheça a nossa interface intuitiva e poderosa em ação. Troque de tela automaticamente a cada 3 segundos ou explore manualmente.
+                </p>
+            </div>
+
+            <!-- Janela do Carrossel -->
+            <div id="showcase-carousel" class="relative rounded-3xl border border-orange-500/30 bg-slate-950/80 shadow-[0_0_50px_rgba(249,115,22,0.15)] overflow-hidden reveal group">
+                <!-- Cabeçalho Estilo Janela Mac -->
+                <div class="flex items-center justify-between px-6 py-4 bg-slate-900/90 border-b border-slate-800/80">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+                        <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+                    </div>
+                    <div id="showcase-slide-title" class="text-xs sm:text-sm font-semibold tracking-wide text-slate-300" data-t="showcase-slide-1">
+                        Dashboard Unificado: Visão Geral de Chamados e Custos
+                    </div>
+                    <div class="text-xs text-orange-400 font-mono bg-orange-950/40 px-2.5 py-1 rounded border border-orange-500/20">
+                        v4.0 ALL-IN-ONE
+                    </div>
+                </div>
+
+                <!-- Área de Exibição dos Slides -->
+                <div class="relative w-full aspect-[16/9] sm:aspect-[16/8.5] bg-slate-950 overflow-hidden">
+                    <!-- Slide 1 -->
+                    <div class="showcase-slide active" data-title="Dashboard Unificado: Visão Geral de Chamados e Custos">
+                        <img src="mockup1.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Dashboard Unificado: Visão Geral de Chamados e Custos" loading="lazy" decoding="async" class="w-full h-full object-cover object-top relative z-10">
+                        <div class="hidden absolute inset-0 w-full h-full bg-slate-900 p-8 flex-col justify-between border border-slate-800">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center text-orange-400 font-bold">#</div>
+                                    <div><div class="text-sm font-bold text-white">Central de Chamados & SLAs</div><div class="text-xs text-slate-400">Tempo real — 14 chamados em atendimento</div></div>
+                                </div>
+                                <span class="bg-emerald-500/20 text-emerald-300 text-xs px-3 py-1 rounded-full border border-emerald-500/30 font-medium">SLA 99.4% OK</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 my-auto py-6">
+                                <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800"><div class="text-xs text-slate-400 mb-1">Tickets Abertos</div><div class="text-2xl font-extrabold text-orange-400">24</div></div>
+                                <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800"><div class="text-xs text-slate-400 mb-1">Ativos Monitorados</div><div class="text-2xl font-extrabold text-blue-400">1,420</div></div>
+                                <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800"><div class="text-xs text-slate-400 mb-1">Custos no Mês</div><div class="text-2xl font-extrabold text-purple-400">R$ 42.5k</div></div>
+                            </div>
+                            <div class="text-xs text-slate-500 text-center font-mono">(Pré-visualização do Dashboard All-in-One — Adicione mockup1.png para ver a captura real)</div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="showcase-slide" data-title="Ficha do Colaborador: Histórico de Ativos e Equipamentos">
+                        <img src="mockup2.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Ficha do Colaborador: Histórico de Ativos e Equipamentos" loading="lazy" decoding="async" class="w-full h-full object-cover object-top relative z-10">
+                        <div class="hidden absolute inset-0 w-full h-full bg-slate-900 p-8 flex-col justify-between border border-slate-800">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold">💻</div>
+                                    <div><div class="text-sm font-bold text-white">Inventário & ITAM — Carlos Silva (Engenharia)</div><div class="text-xs text-slate-400">3 ativos alocados • Termos assinados digitalmente</div></div>
+                                </div>
+                                <span class="bg-blue-500/20 text-blue-300 text-xs px-3 py-1 rounded-full border border-blue-500/30 font-medium">Alocado</span>
+                            </div>
+                            <div class="space-y-3 my-auto py-4">
+                                <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between"><span class="text-sm text-slate-200">MacBook Pro M3 Max (16" / 64GB RAM)</span><span class="text-xs text-emerald-400 font-mono">Termo #9948 ✓</span></div>
+                                <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between"><span class="text-sm text-slate-200">Monitor Dell UltraSharp 32" 4K USB-C</span><span class="text-xs text-emerald-400 font-mono">Termo #9949 ✓</span></div>
+                                <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between"><span class="text-sm text-slate-200">Licença Figma Professional / JetBrains All Products</span><span class="text-xs text-blue-400 font-mono">Ativo Cloud ✓</span></div>
+                            </div>
+                            <div class="text-xs text-slate-500 text-center font-mono">(Pré-visualização do Módulo ITAM — Adicione mockup2.png para ver a captura real)</div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="showcase-slide" data-title="Fluxo de Aprovação de Despesas e Reembolsos">
+                        <img src="mockup3.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" alt="Fluxo de Aprovação de Despesas e Reembolsos" loading="lazy" decoding="async" class="w-full h-full object-cover object-top relative z-10">
+                        <div class="hidden absolute inset-0 w-full h-full bg-slate-900 p-8 flex-col justify-between border border-slate-800">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">💳</div>
+                                    <div><div class="text-sm font-bold text-white">Gestão de Despesas & Reembolsos de TI</div><div class="text-xs text-slate-400">Aprovação multinível e vínculo com orçamento de suporte</div></div>
+                                </div>
+                                <span class="bg-purple-500/20 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-500/30 font-medium">Orçamento OK</span>
+                            </div>
+                            <div class="space-y-3 my-auto py-4">
+                                <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between"><div><div class="text-sm text-slate-200">Reembolso: Teclado Mecânico Keychron Q1</div><div class="text-xs text-slate-500">Solicitado por: Ana Martins (UX Design)</div></div><span class="bg-orange-500 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow">Aprovar R$ 850</span></div>
+                                <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800 flex items-center justify-between"><div><div class="text-sm text-slate-200">Renovação Anual AWS Cloud Infrastructure</div><div class="text-xs text-slate-500">Vinculado ao Projeto HelpDesk Core v4</div></div><span class="bg-slate-800 text-slate-300 text-xs px-3 py-1.5 rounded-lg border border-slate-700">Aprovado ✓</span></div>
+                            </div>
+                            <div class="text-xs text-slate-500 text-center font-mono">(Pré-visualização de Despesas — Adicione mockup3.png para ver a captura real)</div>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+                    </div>
+
+                    <!-- Botões de Navegação do Carrossel (Anterior/Próximo) -->
+                    <button id="showcase-prev" class="showcase-nav-btn absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center text-white z-20 opacity-80 group-hover:opacity-100" aria-label="Anterior">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    <button id="showcase-next" class="showcase-nav-btn absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full flex items-center justify-center text-white z-20 opacity-80 group-hover:opacity-100" aria-label="Próximo">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Indicadores Inferiores -->
+                <div class="flex items-center justify-center gap-3 py-5 bg-slate-900/95 border-t border-slate-800/80">
+                    <div class="showcase-dot active" data-index="0" title="Slide 1"></div>
+                    <div class="showcase-dot" data-index="1" title="Slide 2"></div>
+                    <div class="showcase-dot" data-index="2" title="Slide 3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- SEÇÃO 4.8: INFRAESTRUTURA GLOBAL COM NÓS 3D                          -->
+    <!-- ==================================================================== -->
+    <section id="infraestrutura" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-dark-950 border-t border-slate-800/60">
+        <div class="absolute top-1/4 left-10 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center mb-20 reveal">
+                <!-- Coluna do Esfera/Nós 3D -->
+                <div class="lg:col-span-6 flex items-center justify-center relative">
+                    <div class="absolute -top-6 left-0 flex items-center gap-3 z-20">
+                        <span class="w-12 h-[1px] bg-slate-600"></span>
+                        <span class="text-xs sm:text-sm font-mono tracking-widest text-slate-400 uppercase" data-t="infra-badge">Infraestrutura Global</span>
+                    </div>
+                    <div id="infra-sphere-container" class="w-full h-[360px] sm:h-[450px] relative cursor-grab flex items-center justify-center"></div>
+                </div>
+
+                <!-- Coluna de Texto -->
+                <div class="lg:col-span-6 flex flex-col justify-center lg:pl-6">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.05]" data-t="infra-h2">
+                        Global por <br>
+                        <span class="text-slate-500 font-light">padrão.</span>
+                    </h2>
+                    <p class="text-lg sm:text-xl text-slate-300 font-light max-w-xl leading-relaxed" data-t="infra-desc">
+                        Seus agentes, chamados e inventário rodam em infraestrutura distribuída por 29 regiões globais. Latência inferior a 50ms com altíssima disponibilidade.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Cards de Destaque Infraestrutura -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 reveal">
+                <!-- Card Esquerdo: 29 Regiões -->
+                <div class="lg:col-span-7 flex flex-col justify-between p-8 sm:p-10 glass-card rounded-3xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-500 relative overflow-hidden group min-h-[320px]">
+                    <div class="absolute inset-0 opacity-40 pointer-events-none overflow-hidden">
+                        <svg class="w-full h-full object-cover" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="20" y1="50" x2="580" y2="50" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
+                            <line x1="20" y1="110" x2="580" y2="110" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
+                            <line x1="20" y1="170" x2="580" y2="170" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
+                            <line x1="20" y1="230" x2="580" y2="230" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
+                            <path d="M 100 230 C 180 110, 320 50, 480 110" stroke="rgba(249,115,22,0.4)" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+                            <path d="M 200 170 C 280 230, 400 230, 500 50" stroke="rgba(59,130,246,0.4)" stroke-width="1.5" stroke-dasharray="4 4" fill="none" />
+                            <circle cx="100" cy="230" r="4" fill="#f97316" />
+                            <circle cx="480" cy="110" r="4" fill="#f97316" />
+                            <circle cx="200" cy="170" r="4" fill="#3b82f6" />
+                            <circle cx="500" cy="50" r="4" fill="#3b82f6" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-orange-400 font-semibold tracking-wider uppercase mb-2 block" data-t="infra-c1-badge">Rede Edge Distribuída</span>
+                        <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" data-t="infra-c1-title">29 Regiões Globais</h3>
+                    </div>
+                    <p class="text-sm sm:text-base text-slate-400 max-w-md mt-6 font-light leading-relaxed" data-t="infra-c1-desc">
+                        Roteamento inteligente de chamados e replicação de dados em tempo real em servidores dedicados nas Américas, Europa e Ásia.
+                    </p>
+                </div>
+
+                <!-- Card Direito: Uptime -->
+                <div class="lg:col-span-5 flex flex-col justify-between p-8 sm:p-10 glass-card rounded-3xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-500 relative overflow-hidden group min-h-[320px]">
+                    <div>
+                        <span class="text-xs font-mono text-blue-400 font-semibold tracking-wider uppercase mb-2 block" data-t="infra-c2-badge">Confiabilidade Enterprise</span>
+                        <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" data-t="infra-c2-title">99.99% Uptime SLA</h3>
+                    </div>
+                    <div class="my-6 py-6 border-y border-slate-800/80 flex items-center justify-between">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">&lt; 50ms</div>
+                            <div class="text-xs text-slate-500" data-t="infra-c2-s1">Latência Média</div>
+                        </div>
+                        <div class="w-px h-10 bg-slate-800"></div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono" data-t="infra-c2-s2-val">Zero</div>
+                            <div class="text-xs text-slate-500" data-t="infra-c2-s2">Perda de Dados</div>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-400 font-light" data-t="infra-c2-desc">
+                        Arquitetura redundante com failover automático e conformidade SOC2 e LGPD.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Grade Inferior de Nós Regionais -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 reveal">
+                <div class="p-6 sm:p-7 glass-card rounded-2xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex items-center gap-2.5 mb-5">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500 shadow-[0_0_8px_#ec4899]"></span>
+                        </span>
+                        <span class="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase" data-t="infra-op-1">OPERACIONAL</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-1" data-t="infra-r1-title">América do Norte</h3>
+                    <p class="text-xs sm:text-sm text-slate-500 font-mono" data-t="infra-r1-desc">12 nós ativos</p>
+                </div>
+
+                <div class="p-6 sm:p-7 glass-card rounded-2xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex items-center gap-2.5 mb-5">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500 shadow-[0_0_8px_#ec4899]"></span>
+                        </span>
+                        <span class="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase" data-t="infra-op-2">OPERACIONAL</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-1" data-t="infra-r2-title">Europa</h3>
+                    <p class="text-xs sm:text-sm text-slate-500 font-mono" data-t="infra-r2-desc">8 nós ativos</p>
+                </div>
+
+                <div class="p-6 sm:p-7 glass-card rounded-2xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex items-center gap-2.5 mb-5">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500 shadow-[0_0_8px_#ec4899]"></span>
+                        </span>
+                        <span class="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase" data-t="infra-op-3">OPERACIONAL</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-1" data-t="infra-r3-title">Ásia-Pacífico</h3>
+                    <p class="text-xs sm:text-sm text-slate-500 font-mono" data-t="infra-r3-desc">6 nós ativos</p>
+                </div>
+
+                <div class="p-6 sm:p-7 glass-card rounded-2xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex items-center gap-2.5 mb-5">
+                        <span class="relative flex h-2.5 w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-pink-500 shadow-[0_0_8px_#ec4899]"></span>
+                        </span>
+                        <span class="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase" data-t="infra-op-4">OPERACIONAL</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold text-white mb-1" data-t="infra-r4-title">América do Sul</h3>
+                    <p class="text-xs sm:text-sm text-slate-500 font-mono" data-t="infra-r4-desc">3 nós ativos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- SEÇÃO 4.9: PLANOS E INVESTIMENTO (#planos)                           -->
+    <!-- ==================================================================== -->
+    <section id="planos" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-dark-950 border-t border-slate-800/60">
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-r from-rose-600/10 via-orange-600/10 to-purple-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 sm:mb-20 reveal">
+                <div class="section-badge mx-auto justify-center mb-4" data-t="plan-badge">Planos e Preços</div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4" data-t="plan-h2">
+                    <span class="text-white block">Pague por</span>
+                    <span class="block text-transparent stroke-white" style="-webkit-text-stroke: 2px rgba(255,255,255,0.75);">resultados.</span>
+                </h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-base sm:text-lg" data-t="plan-desc">
+                    Escolha o plano ideal para a sua operação de TI e suporte. Sem taxas ocultas, cancele ou mude de plano quando quiser.
+                </p>
+            </div>
+
+            <!-- Grade de Planos -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch reveal pt-6">
+                
+                <!-- Plano 1: Starter -->
+                <div class="glass-card rounded-3xl p-8 sm:p-10 border border-slate-800/80 bg-dark-900/40 flex flex-col justify-between relative glow-hover">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-slate-500 font-semibold tracking-wider">01</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2" data-t="p1-title">Starter</h3>
+                        <p class="text-xs sm:text-sm text-slate-400 font-light mb-8" data-t="p1-desc">Para pequenas equipes de TI iniciando a organização de suporte e inventário</p>
+                        
+                        <div class="mb-8 pb-8 border-b border-slate-800/80 flex items-baseline gap-2">
+                            <span class="text-5xl sm:text-6xl font-black text-white tracking-tight">R$ 499</span>
+                            <span class="text-xs text-slate-500 font-light" data-t="p1-per">/ mês</span>
+                        </div>
+
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p1-li1">Até <strong>3 agentes de suporte</strong></span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p1-li2">Gestão de até <strong>150 ativos e licenças</strong></span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p1-li3">Portal de autoatendimento (Colaboradores)</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p1-li4">Aprovação de despesas básica (1 nível)</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p1-li5">Suporte em horário comercial (E-mail)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#contacto" class="w-full py-4 px-6 rounded-2xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 group mt-auto">
+                        <span data-t="p1-btn">Começar 14 dias grátis</span>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                </div>
+
+                <!-- Plano 2: Professional (Destaque) -->
+                <div class="glass-card rounded-3xl p-8 sm:p-10 border border-orange-500/50 bg-gradient-to-b from-orange-950/30 via-dark-900/60 to-dark-900/80 flex flex-col justify-between relative shadow-[0_0_50px_rgba(249,115,22,0.15)] scale-[1.02] z-10 glow-hover">
+                    <div class="absolute -top-3.5 right-8 bg-gradient-to-r from-orange-500 to-amber-500 text-dark-950 font-extrabold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full shadow-lg" data-t="p2-pop">
+                        MAIS POPULAR
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-orange-400 font-semibold tracking-wider">02</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2" data-t="p2-title">Professional</h3>
+                        <p class="text-xs sm:text-sm text-slate-300 font-light mb-8" data-t="p2-desc">Para empresas em crescimento que precisam de governança, IA e automação total</p>
+                        
+                        <div class="mb-8 pb-8 border-b border-orange-500/20 flex items-baseline gap-2">
+                            <span class="text-5xl sm:text-6xl font-black text-white tracking-tight">R$ 1.299</span>
+                            <span class="text-xs text-slate-400 font-light" data-t="p2-per">/ mês</span>
+                        </div>
+                        <p class="text-[11px] text-orange-300 font-medium -mt-6 mb-8 block" data-t="p2-bill">Faturado anualmente ou R$ 1.499 mensal</p>
+
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p2-li1">Até <strong>15 agentes de suporte</strong></span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p2-li2">Gestão de até <strong>1.000 ativos e licenças</strong></span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p2-li3"><strong>Roteamento por IA</strong> e automação de SLAs</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p2-li4">Relatórios avançados de custos por ticket</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p2-li5">Integrações privadas (WhatsApp, Slack)</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
+                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p2-li6">Suporte prioritário 24/7</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#contacto" class="w-full py-4 px-6 rounded-2xl bg-white hover:bg-slate-100 text-dark-950 font-bold text-sm shadow-[0_0_25px_rgba(255,255,255,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.5)] transition-all duration-300 flex items-center justify-center gap-2 group mt-auto">
+                        <span data-t="p2-btn">Começar teste grátis</span>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                </div>
+
+                <!-- Plano 3: Escala -->
+                <div class="glass-card rounded-3xl p-8 sm:p-10 border border-slate-800/80 bg-dark-900/40 flex flex-col justify-between relative glow-hover">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono text-slate-500 font-semibold tracking-wider">03</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2" data-t="p3-title">Escala</h3>
+                        <p class="text-xs sm:text-sm text-slate-400 font-light mb-8" data-t="p3-desc">Operações complexas com alta escalabilidade e governança</p>
+                        
+                        <div class="mb-8 pb-8 border-b border-slate-800/80 flex items-baseline gap-2">
+                            <span class="text-5xl sm:text-6xl font-black text-white tracking-tight">Custom</span>
+                        </div>
+
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p3-li1">Agentes, chamados e ativos <strong>ilimitados</strong></span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p3-li2">Integração com <strong>ERPs (SAP, TOTVS, Oracle)</strong></span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p3-li3"><strong>Aprovação multinível</strong> e orçamento avançado</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p3-li4">Roteamento e automação de IA customizada</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p3-li5">Deploy On-premise ou Nuvem Privada</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p3-li6">Garantia de SLA contratual (99.99%)</span>
+                            </li>
+                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                                <svg class="w-4 h-4 text-purple-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                                <span data-t="p3-li7">Gerente de conta dedicado VIP 24/7</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a href="#contacto" class="w-full py-4 px-6 rounded-2xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 group mt-auto">
+                        <span data-t="p3-btn">Falar com vendas</span>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- SEÇÃO 5: DEPOIMENTOS DE CLIENTES (TESTEMUNHOS)                       -->
+    <!-- ==================================================================== -->
+    <section id="testemunhos" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <div class="section-badge mx-auto justify-center mb-4" data-t="test-badge">Depoimentos Reais</div>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight" data-t="test-h2">
+                    O QUE OS NOSSOS <span class="gradient-text">CLIENTES DIZEM</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+                <!-- Depoimento 1 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed" data-t="test-q1">"Antes usávamos Trello, e-mails soltos e planilhas intermináveis para gerenciar o suporte. Com o Deskify, centralizamos todos os chamados em uma única plataforma. A produtividade da equipe disparou e acabamos com a desorganização."</p>
+                    <div>
+                        <p class="text-sm font-semibold text-white">Ricardo Costa</p>
+                        <p class="text-xs text-slate-500" data-t="test-r1">Diretor de Operações</p>
+                    </div>
+                </div>
+                <!-- Depoimento 2 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed" data-t="test-q2">"O maior diferencial para a nossa TI é a segurança de rastrear todas as licenças de software e equipamentos na mesma tela onde atendemos os chamados. Saber exatamente quem está com qual notebook e licença evitou desperdícios enormes."</p>
+                    <div>
+                        <p class="text-sm font-semibold text-white">Ana Martins</p>
+                        <p class="text-xs text-slate-500" data-t="test-r2">Coord. de TI</p>
+                    </div>
+                </div>
+                <!-- Depoimento 3 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed" data-t="test-q3">"Como CFO, ter a gestão de despesas e compras de TI no mesmo ecossistema é um divisor de águas. Agora aprovo reembolsos, compras de mouses, teclados e licenças com total visibilidade do orçamento e vínculo direto aos chamados."</p>
+                    <div>
+                        <p class="text-sm font-semibold text-white">Pedro Ferreira</p>
+                        <p class="text-xs text-slate-500" data-t="test-r3">CFO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================================================================== -->
+    <!-- SEÇÃO 6: RODAPÉ E FORMULÁRIO DE CONTATO                              -->
+    <!-- ==================================================================== -->
+    <footer id="contacto" class="relative py-16 sm:py-24 lg:py-32 border-t border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                <!-- Formulário -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8">
+                    <h3 class="text-xl font-bold text-white mb-6" data-t="foot-h3-1">Fale Conosco</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <input type="text" placeholder="Insira o seu nome completo" data-translate-placeholder="name" class="w-full bg-dark-800/80 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                        <input type="email" placeholder="Insira o seu e-mail" data-translate-placeholder="email" class="w-full bg-dark-800/80 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
+                        <textarea rows="4" placeholder="Mensagem" data-translate-placeholder="msg" class="w-full bg-dark-800/80 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 resize-none focus:outline-none focus:border-indigo-500"></textarea>
+                        <button type="submit" class="btn-glow text-sm font-semibold text-white px-6 py-3 rounded-full" data-t="foot-btn">ENVIAR MENSAGEM</button>
+                    </form>
+                </div>
+
+                <!-- Informações -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-center">
+                    <img src="assets/logo-sem-fundo-removebg-preview.png" alt="Deskify" class="h-10 w-auto object-contain self-start mb-6 opacity-95">
+                    <h3 class="text-xl font-bold text-white mb-6" data-t="foot-h3-2">Informações de Contato</h3>
+                    <p class="text-slate-300 text-sm mb-4" data-t="foot-desc">Estamos prontos para demonstrar como o Deskify pode transformar a gestão de suporte, ativos e despesas da sua empresa.</p>
+                    <p class="text-white font-semibold text-base mb-1">+55 (11) 9 4567-8901</p>
+                    <p class="text-slate-400 text-sm mb-4">contato@deskify.com.br</p>
+                    <p class="text-slate-500 text-xs">São Paulo, Brasil — Av. Paulista, 1578</p>
+                </div>
+            </div>
+
+            <!-- Direitos Autorais -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-slate-800/50">
+                <p class="text-xs text-slate-500" data-t="foot-copy">© 2026 Deskify. Todos os direitos reservados.</p>
+                <a href="#hero" class="text-xs text-orange-400 hover:text-orange-300" data-t="foot-top">Voltar ao topo ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================================================================== -->
+    <!-- SCRIPTS DE IMPORTAÇÃO E MÓDULOS ES6                                  -->
+    <!-- ==================================================================== -->
+    <!-- Mapeamento de Importação para Three.js via ES Modules -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.164.1/examples/jsm/"
+        }
+    }
+    </script>
+    
+    <!-- Script Modular Principal do Sistema -->
+    <script type="module" src="script.js"></script>
+</body>
+</html>

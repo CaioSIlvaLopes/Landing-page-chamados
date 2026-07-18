@@ -1,0 +1,290 @@
+/* ==========================================================================
+   DESKIFY — FOLHA DE ESTILOS PRINCIPAL (style.css)
+   Organização modular com nomes de classes simples, objetivos e comentados.
+   ========================================================================== */
+
+/* ===== 1. RESET E ESTILOS GERAIS ===== */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #020617; /* Cor escura de fundo (Midnight) */
+    color: #f8fafc;            /* Cor clara de texto padrão */
+    overflow-x: hidden;        /* Evita rolagem horizontal indesejada */
+}
+
+/* Customização da barra de rolagem (Scrollbar) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #020617;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(249, 115, 22, 0.4);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(249, 115, 22, 0.8);
+}
+
+
+/* ===== 2. GRADIENTES DE TEXTO ===== */
+/* Aplica gradiente laranja-azul ao texto */
+.gradient-text {
+    background: linear-gradient(135deg, #f97316, #fb923c, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Aplica gradiente azul-laranja ao texto */
+.gradient-text-teal {
+    background: linear-gradient(135deg, #38bdf8, #3b82f6, #f97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+/* ===== 3. CARDS & GLASSMORPHISM (EFEITO SPOTLIGHT) ===== */
+/* Estrutura base dos cartões translúcidos com efeito de vidro fosco */
+.glass-card {
+    position: relative;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+/* Garante que todo o conteúdo interior fique acima das camadas de luz do spotlight */
+.glass-card > * {
+    position: relative;
+    z-index: 10;
+}
+
+/* Camada 1 do Spotlight: Brilho radial interno seguindo as coordenadas do ponteiro do mouse */
+.glass-card::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0px;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(249, 115, 22, 0.15), transparent 40%);
+    z-index: 1;
+}
+
+/* Camada 2 do Spotlight: Reflexo luminoso na borda seguindo o ponteiro do mouse */
+.glass-card::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: radial-gradient(300px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(249, 115, 22, 0.6), transparent 40%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+    z-index: 2;
+}
+
+.glass-card:hover::before,
+.glass-card:hover::after {
+    opacity: 1;
+}
+
+/* Efeito extra de brilho ao passar o mouse */
+.glow-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glow-hover:hover {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.25), 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border-color: rgba(249, 115, 22, 0.3);
+    transform: translateY(-4px);
+}
+
+/* Transições suaves nos títulos e ícones dos cards */
+.glass-card h3 {
+    transition: color 0.3s ease;
+}
+.glass-card:hover h3 {
+    color: #fb923c; /* Laranja suave */
+}
+.glass-card .w-10.h-10 {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover .w-10.h-10 {
+    transform: scale(1.1) translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+}
+
+
+/* ===== 4. BOTÕES & COMPONENTES INTERATIVOS ===== */
+/* Botão principal com gradiente e sombra brilhante (Glow Button) */
+.btn-glow {
+    background: linear-gradient(135deg, #fb923c, #ea580c);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+    transition: all 0.3s ease;
+}
+.btn-glow:hover {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.8);
+    transform: translateY(-2px);
+}
+
+/* Botão de alternância de idioma (PT / EN) */
+.lang-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: rgba(15, 23, 42, 0.6);
+    color: #cbd5e1;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    white-space: nowrap;
+}
+.lang-toggle-btn:hover {
+    border-color: rgba(249, 115, 22, 0.5);
+    background: rgba(249, 115, 22, 0.08);
+    color: #fff;
+    box-shadow: 0 0 14px rgba(249, 115, 22, 0.18);
+}
+.lang-toggle-btn .lang-flag {
+    font-size: 1rem;
+    line-height: 1;
+}
+.lang-toggle-btn .lang-label {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+
+/* ===== 5. NAVEGAÇÃO SUPERIOR (NAVBAR) ===== */
+/* Barra de navegação com efeito de vidro (Glassmorphism) */
+.nav-glass {
+    background: rgba(2, 6, 23, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+/* ===== 6. TEXTURAS E ANIMAÇÕES DE FUNDO ===== */
+@keyframes gridTranslate {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(24px, 24px, 0); }
+}
+
+.animate-grid-translate {
+    animation: gridTranslate 35s linear infinite;
+    will-change: transform;
+}
+
+/* Padrão pontilhado decorativo para fundos de seções */
+.bg-dot-texture {
+    background-image: radial-gradient(rgba(249, 115, 22, 0.35) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+}
+
+
+/* ===== 7. CARROSSEL DO SISTEMA (SHOWCASE) ===== */
+/* Transição suave e empilhamento dos slides de pré-visualização */
+.showcase-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+.showcase-slide.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    z-index: 10;
+}
+
+/* Indicadores de bolinha na parte inferior do carrossel */
+.showcase-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background-color: rgba(148, 163, 184, 0.3);
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+.showcase-dot.active {
+    width: 36px;
+    background: linear-gradient(135deg, #f97316, #3b82f6);
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.6);
+}
+
+/* Botões de navegação lateral do carrossel */
+.showcase-nav-btn {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.3s ease;
+}
+.showcase-nav-btn:hover {
+    background: rgba(249, 115, 22, 0.3);
+    border-color: rgba(249, 115, 22, 0.5);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
+}
+
+
+/* ===== 8. ANIMAÇÕES DE SCROLL E COMPONENTES DE SEÇÃO ===== */
+/* Efeito de revelação suave ao rolar a página (Scroll Reveal) */
+.reveal {
+    opacity: 0.35;
+    transform: translateY(28px) scale(0.985);
+    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Badge/Etiqueta que aparece no topo dos títulos de cada seção */
+.section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #f97316;
+    background: rgba(249, 115, 22, 0.1);
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+/* Cartão de estatísticas e métricas (Impacto) */
+.stat-card {
+    background: linear-gradient(180deg, rgba(249, 115, 22, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #f97316, #3b82f6);
+}
