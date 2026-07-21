@@ -317,7 +317,7 @@ const translations = {
 const pageTexts = [
     // HERO
     ['[data-t="hero-badge"]', 'A plataforma definitiva para TI e Operações', 'The definitive platform for IT and Operations'],
-    ['[data-t="hero-h1"]', 'O controle total <br>do seu <span class="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-blue-400">suporte, ativos</span> e despesas.', 'Total control <br>of your <span class="font-light italic text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-blue-400">support, assets</span> and expenses.'],
+    ['[data-t="hero-h1"]', 'O controle total <br>do seu <span class="hero-title-highlight">chamados e ativos. ', 'Total control <br>of your <span class="hero-title-highlight">tickets and assets. '],
     ['[data-t="hero-sub"]', 'Pare de usar planilhas dispersas e sistemas isolados. Abra chamados, rastreie equipamentos e controle os custos operacionais da sua empresa em uma única plataforma inteligente e unificada.', 'Stop using scattered spreadsheets and isolated systems. Open tickets, track equipment and control your company\'s operational costs in a single intelligent, unified platform.'],
     ['[data-t="hero-cta1"]', 'Começar agora', 'Get Started'],
     ['[data-t="hero-cta2"]', 'Explorar recursos', 'Explore features'],
@@ -328,7 +328,7 @@ const pageTexts = [
     
     // Seção 2 - Plataforma
     ['[data-t="sec2-badge"]', 'Plataforma All-in-One', 'All-in-One Platform'],
-    ['[data-t="sec2-h2"]', 'EXPLORE OS <span class="gradient-text">MÓDULOS UNIFICADOS</span>', 'EXPLORE THE <span class="gradient-text">UNIFIED MODULES</span>'],
+    ['[data-t="sec2-h2"]', 'EXPLORE OS <span class="platform-title-highlight">MÓDULOS UNIFICADOS</span>', 'EXPLORE THE <span class="platform-title-highlight">UNIFIED MODULES</span>'],
     ['[data-t="sec2-desc"]', 'A sinergia perfeita entre suporte técnico, rastreamento de equipamentos e controle financeiro.', 'The perfect synergy between technical support, asset tracking and financial control.'],
     ['[data-t="c1-badge"]', 'Core', 'Core'],
     ['[data-t="c1-h3"]', 'Central de Chamados Inteligente', 'Intelligent Help Desk Center'],
@@ -381,7 +381,7 @@ const pageTexts = [
 
     // Seção 4.8 - Infraestrutura
     ['[data-t="infra-badge"]', 'Infraestrutura Global', 'Global Infrastructure'],
-    ['[data-t="infra-h2"]', 'Global por <br><span class="text-slate-500 font-light">padrão.</span>', 'Global by <br><span class="text-slate-500 font-light">default.</span>'],
+    ['[data-t="infra-h2"]', 'Global por <br><span class="infra-title-light">padrão.</span>', 'Global by <br><span class="infra-title-light">default.</span>'],
     ['[data-t="infra-desc"]', 'Seus agentes, chamados e inventário rodam em infraestrutura distribuída por 29 regiões globais. Latência inferior a 50ms com altíssima disponibilidade.', 'Your agents, tickets and inventory run on distributed infrastructure across 29 global regions. Latency under 50ms with extremely high availability.'],
     ['[data-t="infra-c1-badge"]', 'Rede Edge Distribuída', 'Distributed Edge Network'],
     ['[data-t="infra-c1-title"]', '29 Regiões Globais', '29 Global Regions'],
@@ -407,7 +407,7 @@ const pageTexts = [
 
     // Seção 4.9 - Planos
     ['[data-t="plan-badge"]', 'Planos e Preços', 'Plans & Pricing'],
-    ['[data-t="plan-h2"]', '<span class="text-white block">Pague por</span><span class="block text-transparent stroke-white" style="-webkit-text-stroke: 2px rgba(255,255,255,0.75);">resultados.</span>', '<span class="text-white block">Pay for</span><span class="block text-transparent stroke-white" style="-webkit-text-stroke: 2px rgba(255,255,255,0.75);">results.</span>'],
+    ['[data-t="plan-h2"]', '<span class="planos-title-block">Pague por</span><span class="planos-title-highlight">resultados.</span>', '<span class="planos-title-block">Pay for</span><span class="planos-title-highlight">results.</span>'],
     ['[data-t="plan-desc"]', 'Escolha o plano ideal para a sua operação de TI e suporte. Sem taxas ocultas, cancele ou mude de plano quando quiser.', 'Choose the ideal plan for your IT and support operation. No hidden fees, cancel or change plans anytime.'],
     ['[data-t="p1-title"]', 'Starter', 'Starter'],
     ['[data-t="p1-desc"]', 'Para pequenas equipes de TI iniciando a organização de suporte e inventário', 'For small IT teams starting to organize support and inventory'],
