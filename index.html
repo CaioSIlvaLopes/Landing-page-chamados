@@ -230,11 +230,11 @@
                         <span class="hero-stat-label" data-t="hero-stat1">Maior Controle Operacional</span>
                     </div>
                     <div class="hero-stat-item">
-                        <span class="hero-stat-number text-blue-400">100%</span>
+                        <span class="hero-stat-number text-orange-400">100%</span>
                         <span class="hero-stat-label" data-t="hero-stat2">Visibilidade de Ativos e Licenças</span>
                     </div>
                     <div class="hero-stat-item">
-                        <span class="hero-stat-number text-white">0</span>
+                        <span class="hero-stat-number text-orange-400">0</span>
                         <span class="hero-stat-label" data-t="hero-stat3">Planilhas Necessárias</span>
                     </div>
                     <div class="hero-stat-item">
@@ -610,39 +610,39 @@
     <!-- ==================================================================== -->
     <!-- SEÇÃO 4.8: INFRAESTRUTURA GLOBAL COM NÓS 3D                          -->
     <!-- ==================================================================== -->
-    <section id="infraestrutura" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-dark-950 border-t border-slate-800/60">
-        <div class="absolute top-1/4 left-10 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[160px] pointer-events-none"></div>
-        <div class="absolute bottom-10 right-10 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+    <section id="infraestrutura" class="infra-section">
+        <div class="infra-glow-left"></div>
+        <div class="infra-glow-right"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center mb-20 reveal">
+        <div class="infra-container">
+            <div class="infra-header-grid reveal">
                 <!-- Coluna do Esfera/Nós 3D -->
-                <div class="lg:col-span-6 flex items-center justify-center relative">
-                    <div class="absolute -top-6 left-0 flex items-center gap-3 z-20">
-                        <span class="w-12 h-[1px] bg-slate-600"></span>
-                        <span class="text-xs sm:text-sm font-mono tracking-widest text-slate-400 uppercase" data-t="infra-badge">Infraestrutura Global</span>
+                <div class="infra-sphere-col">
+                    <div class="infra-badge-wrapper">
+                        <span class="infra-badge-line"></span>
+                        <span class="infra-badge-text" data-t="infra-badge">Infraestrutura Global</span>
                     </div>
-                    <div id="infra-sphere-container" class="w-full h-[360px] sm:h-[450px] relative cursor-grab flex items-center justify-center"></div>
+                    <div id="infra-sphere-container" class="infra-sphere-container"></div>
                 </div>
 
                 <!-- Coluna de Texto -->
-                <div class="lg:col-span-6 flex flex-col justify-center lg:pl-6">
-                    <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.05]" data-t="infra-h2">
+                <div class="infra-text-col">
+                    <h2 class="infra-title" data-t="infra-h2">
                         Global por <br>
-                        <span class="text-slate-500 font-light">padrão.</span>
+                        <span class="infra-title-light">padrão.</span>
                     </h2>
-                    <p class="text-lg sm:text-xl text-slate-300 font-light max-w-xl leading-relaxed" data-t="infra-desc">
+                    <p class="infra-description" data-t="infra-desc">
                         Seus agentes, chamados e inventário rodam em infraestrutura distribuída por 29 regiões globais. Latência inferior a 50ms com altíssima disponibilidade.
                     </p>
                 </div>
             </div>
 
             <!-- Cards de Destaque Infraestrutura -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 reveal">
+            <div class="infra-cards-grid reveal">
                 <!-- Card Esquerdo: 29 Regiões -->
-                <div class="lg:col-span-7 flex flex-col justify-between p-8 sm:p-10 glass-card rounded-3xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-500 relative overflow-hidden group min-h-[320px]">
-                    <div class="absolute inset-0 opacity-40 pointer-events-none overflow-hidden">
-                        <svg class="w-full h-full object-cover" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div class="infra-card-main glass-card group">
+                    <div class="infra-card-svg-bg">
+                        <svg viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <line x1="20" y1="50" x2="580" y2="50" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
                             <line x1="20" y1="110" x2="580" y2="110" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
                             <line x1="20" y1="170" x2="580" y2="170" stroke="rgba(255,255,255,0.07)" stroke-width="1" />
@@ -656,85 +656,85 @@
                         </svg>
                     </div>
                     <div>
-                        <span class="text-xs font-mono text-orange-400 font-semibold tracking-wider uppercase mb-2 block" data-t="infra-c1-badge">Rede Edge Distribuída</span>
-                        <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" data-t="infra-c1-title">29 Regiões Globais</h3>
+                        <span class="infra-card-badge orange" data-t="infra-c1-badge">Rede Edge Distribuída</span>
+                        <h3 class="infra-card-title" data-t="infra-c1-title">29 Regiões Globais</h3>
                     </div>
-                    <p class="text-sm sm:text-base text-slate-400 max-w-md mt-6 font-light leading-relaxed" data-t="infra-c1-desc">
+                    <p class="infra-card-desc" data-t="infra-c1-desc">
                         Roteamento inteligente de chamados e replicação de dados em tempo real em servidores dedicados nas Américas, Europa e Ásia.
                     </p>
                 </div>
 
                 <!-- Card Direito: Uptime -->
-                <div class="lg:col-span-5 flex flex-col justify-between p-8 sm:p-10 glass-card rounded-3xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-500 relative overflow-hidden group min-h-[320px]">
+                <div class="infra-card-secondary glass-card group">
                     <div>
-                        <span class="text-xs font-mono text-blue-400 font-semibold tracking-wider uppercase mb-2 block" data-t="infra-c2-badge">Confiabilidade Enterprise</span>
-                        <h3 class="text-3xl sm:text-4xl font-bold text-white tracking-tight" data-t="infra-c2-title">99.99% Uptime SLA</h3>
+                        <span class="infra-card-badge orange" data-t="infra-c2-badge">Confiabilidade Enterprise</span>
+                        <h3 class="infra-card-title" data-t="infra-c2-title">99.99% Uptime SLA</h3>
                     </div>
-                    <div class="my-6 py-6 border-y border-slate-800/80 flex items-center justify-between">
+                    <div class="infra-stats-divider">
                         <div>
-                            <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">&lt; 50ms</div>
-                            <div class="text-xs text-slate-500" data-t="infra-c2-s1">Latência Média</div>
+                            <div class="infra-stat-val white">&lt; 50ms</div>
+                            <div class="infra-stat-label" data-t="infra-c2-s1">Latência Média</div>
                         </div>
-                        <div class="w-px h-10 bg-slate-800"></div>
+                        <div class="infra-stat-separator"></div>
                         <div>
-                            <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono" data-t="infra-c2-s2-val">Zero</div>
-                            <div class="text-xs text-slate-500" data-t="infra-c2-s2">Perda de Dados</div>
+                            <div class="infra-stat-val green" data-t="infra-c2-s2-val">Zero</div>
+                            <div class="infra-stat-label" data-t="infra-c2-s2">Perda de Dados</div>
                         </div>
                     </div>
-                    <p class="text-xs sm:text-sm text-slate-400 font-light" data-t="infra-c2-desc">
+                    <p class="infra-card-subdesc" data-t="infra-c2-desc">
                         Arquitetura redundante com failover automático e conformidade SOC2 e LGPD.
                     </p>
                 </div>
             </div>
 
             <!-- Grade Inferior de Nós Regionais -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 reveal">
-                <div class="p-6 sm:p-7 glass-card rounded-2xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 relative overflow-hidden group">
-                    <div class="flex items-center gap-2.5 mb-5">
-                        <span class="relative flex h-2.5 w-2.5">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500 shadow-[0_0_8px_#f97316]"></span>
+            <div class="infra-nodes-grid reveal">
+                <div class="infra-node-card glass-card group">
+                    <div class="infra-status-wrapper">
+                        <span class="infra-status-dot-container">
+                          <span class="infra-status-ping"></span>
+                          <span class="infra-status-dot"></span>
                         </span>
-                        <span class="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase" data-t="infra-op-1">OPERACIONAL</span>
+                        <span class="infra-status-text" data-t="infra-op-1">OPERACIONAL</span>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-1" data-t="infra-r1-title">América do Norte</h3>
-                    <p class="text-xs sm:text-sm text-slate-500 font-mono" data-t="infra-r1-desc">12 nós ativos</p>
+                    <h3 class="infra-node-title" data-t="infra-r1-title">América do Norte</h3>
+                    <p class="infra-node-desc" data-t="infra-r1-desc">12 nós ativos</p>
                 </div>
 
-                <div class="p-6 sm:p-7 glass-card rounded-2xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 relative overflow-hidden group">
-                    <div class="flex items-center gap-2.5 mb-5">
-                        <span class="relative flex h-2.5 w-2.5">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500 shadow-[0_0_8px_#f97316]"></span>
+                <div class="infra-node-card glass-card group">
+                    <div class="infra-status-wrapper">
+                        <span class="infra-status-dot-container">
+                          <span class="infra-status-ping"></span>
+                          <span class="infra-status-dot"></span>
                         </span>
-                        <span class="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase" data-t="infra-op-2">OPERACIONAL</span>
+                        <span class="infra-status-text" data-t="infra-op-2">OPERACIONAL</span>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-1" data-t="infra-r2-title">Europa</h3>
-                    <p class="text-xs sm:text-sm text-slate-500 font-mono" data-t="infra-r2-desc">8 nós ativos</p>
+                    <h3 class="infra-node-title" data-t="infra-r2-title">Europa</h3>
+                    <p class="infra-node-desc" data-t="infra-r2-desc">8 nós ativos</p>
                 </div>
 
-                <div class="p-6 sm:p-7 glass-card rounded-2xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 relative overflow-hidden group">
-                    <div class="flex items-center gap-2.5 mb-5">
-                        <span class="relative flex h-2.5 w-2.5">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500 shadow-[0_0_8px_#f97316]"></span>
+                <div class="infra-node-card glass-card group">
+                    <div class="infra-status-wrapper">
+                        <span class="infra-status-dot-container">
+                          <span class="infra-status-ping"></span>
+                          <span class="infra-status-dot"></span>
                         </span>
-                        <span class="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase" data-t="infra-op-3">OPERACIONAL</span>
+                        <span class="infra-status-text" data-t="infra-op-3">OPERACIONAL</span>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-1" data-t="infra-r3-title">Ásia-Pacífico</h3>
-                    <p class="text-xs sm:text-sm text-slate-500 font-mono" data-t="infra-r3-desc">6 nós ativos</p>
+                    <h3 class="infra-node-title" data-t="infra-r3-title">Ásia-Pacífico</h3>
+                    <p class="infra-node-desc" data-t="infra-r3-desc">6 nós ativos</p>
                 </div>
 
-                <div class="p-6 sm:p-7 glass-card rounded-2xl border border-slate-800/80 hover:border-slate-700/80 transition-all duration-300 relative overflow-hidden group">
-                    <div class="flex items-center gap-2.5 mb-5">
-                        <span class="relative flex h-2.5 w-2.5">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500 shadow-[0_0_8px_#f97316]"></span>
+                <div class="infra-node-card glass-card group">
+                    <div class="infra-status-wrapper">
+                        <span class="infra-status-dot-container">
+                          <span class="infra-status-ping"></span>
+                          <span class="infra-status-dot"></span>
                         </span>
-                        <span class="text-[11px] font-bold tracking-[0.15em] text-slate-400 uppercase" data-t="infra-op-4">OPERACIONAL</span>
+                        <span class="infra-status-text" data-t="infra-op-4">OPERACIONAL</span>
                     </div>
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-1" data-t="infra-r4-title">América do Sul</h3>
-                    <p class="text-xs sm:text-sm text-slate-500 font-mono" data-t="infra-r4-desc">3 nós ativos</p>
+                    <h3 class="infra-node-title" data-t="infra-r4-title">América do Sul</h3>
+                    <p class="infra-node-desc" data-t="infra-r4-desc">3 nós ativos</p>
                 </div>
             </div>
         </div>
@@ -743,169 +743,169 @@
     <!-- ==================================================================== -->
     <!-- SEÇÃO 4.9: PLANOS E INVESTIMENTO (#planos)                           -->
     <!-- ==================================================================== -->
-    <section id="planos" class="relative py-16 sm:py-24 lg:py-32 overflow-hidden bg-dark-950 border-t border-slate-800/60">
-        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-r from-orange-600/10 via-orange-600/10 to-orange-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+    <section id="planos" class="planos-section">
+        <div class="planos-glow-center"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 sm:mb-20 reveal">
+        <div class="planos-container">
+            <div class="planos-header reveal">
                 <div class="section-badge mx-auto justify-center mb-4" data-t="plan-badge">Planos e Preços</div>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-4" data-t="plan-h2">
-                    <span class="text-white block">Pague por</span>
-                    <span class="block text-transparent stroke-white" style="-webkit-text-stroke: 2px rgba(255,255,255,0.75);">resultados.</span>
+                <h2 class="planos-title" data-t="plan-h2">
+                    <span class="planos-title-block">Pague por</span>
+                    <span class="planos-title-highlight">resultados.</span>
                 </h2>
-                <p class="text-slate-400 max-w-xl mx-auto text-base sm:text-lg" data-t="plan-desc">
+                <p class="planos-description" data-t="plan-desc">
                     Escolha o plano ideal para a sua operação de TI e suporte. Sem taxas ocultas, cancele ou mude de plano quando quiser.
                 </p>
             </div>
 
             <!-- Grade de Planos -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch reveal pt-6">
+            <div class="planos-grid reveal">
                 
                 <!-- Plano 1: Starter -->
-                <div class="glass-card rounded-3xl p-8 sm:p-10 border border-slate-800/80 bg-dark-900/40 flex flex-col justify-between relative glow-hover">
+                <div class="plano-card glow-hover">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono text-slate-500 font-semibold tracking-wider">01</span>
+                        <div class="plano-header-top">
+                            <span class="plano-num">01</span>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2" data-t="p1-title">Starter</h3>
-                        <p class="text-xs sm:text-sm text-slate-400 font-light mb-8" data-t="p1-desc">Para pequenas equipes de TI iniciando a organização de suporte e inventário</p>
+                        <h3 class="plano-name" data-t="p1-title">Starter</h3>
+                        <p class="plano-desc" data-t="p1-desc">Para pequenas equipes de TI iniciando a organização de suporte e inventário</p>
                         
-                        <div class="mb-8 pb-8 border-b border-slate-800/80 flex items-baseline gap-2">
-                            <span class="text-5xl sm:text-6xl font-black text-white tracking-tight">R$ 499</span>
-                            <span class="text-xs text-slate-500 font-light" data-t="p1-per">/ mês</span>
+                        <div class="plano-price-wrapper">
+                            <span class="plano-price">R$ 499</span>
+                            <span class="plano-period" data-t="p1-per">/ mês</span>
                         </div>
 
-                        <ul class="space-y-4 mb-10">
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <ul class="plano-features-list">
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p1-li1">Até <strong>3 agentes de suporte</strong></span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p1-li2">Gestão de até <strong>150 ativos e licenças</strong></span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p1-li3">Portal de autoatendimento (Colaboradores)</span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p1-li4">Aprovação de despesas básica (1 nível)</span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p1-li5">Suporte em horário comercial (E-mail)</span>
                             </li>
                         </ul>
                     </div>
 
-                    <a href="#contacto" class="w-full py-4 px-6 rounded-2xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 group mt-auto">
+                    <a href="#contacto" class="plano-btn group">
                         <span data-t="p1-btn">Começar 14 dias grátis</span>
-                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        <svg class="plano-btn-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
                 </div>
 
                 <!-- Plano 2: Professional (Destaque) -->
-                <div class="glass-card rounded-3xl p-8 sm:p-10 border border-orange-500/50 bg-gradient-to-b from-orange-950/30 via-dark-900/60 to-dark-900/80 flex flex-col justify-between relative shadow-[0_0_50px_rgba(249,115,22,0.15)] scale-[1.02] z-10 glow-hover">
-                    <div class="absolute -top-3.5 right-8 bg-gradient-to-r from-orange-500 to-amber-500 text-dark-950 font-extrabold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full shadow-lg" data-t="p2-pop">
+                <div class="plano-card-featured glow-hover">
+                    <div class="plano-popular-badge" data-t="p2-pop">
                         MAIS POPULAR
                     </div>
 
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono text-orange-400 font-semibold tracking-wider">02</span>
+                        <div class="plano-header-top">
+                            <span class="plano-num featured">02</span>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2" data-t="p2-title">Professional</h3>
-                        <p class="text-xs sm:text-sm text-slate-300 font-light mb-8" data-t="p2-desc">Para empresas em crescimento que precisam de governança, IA e automação total</p>
+                        <h3 class="plano-name" data-t="p2-title">Professional</h3>
+                        <p class="plano-desc featured" data-t="p2-desc">Para empresas em crescimento que precisam de governança, IA e automação total</p>
                         
-                        <div class="mb-8 pb-8 border-b border-orange-500/20 flex items-baseline gap-2">
-                            <span class="text-5xl sm:text-6xl font-black text-white tracking-tight">R$ 1.299</span>
-                            <span class="text-xs text-slate-400 font-light" data-t="p2-per">/ mês</span>
+                        <div class="plano-price-wrapper featured">
+                            <span class="plano-price">R$ 1.299</span>
+                            <span class="plano-period featured" data-t="p2-per">/ mês</span>
                         </div>
-                        <p class="text-[11px] text-orange-300 font-medium -mt-6 mb-8 block" data-t="p2-bill">Faturado anualmente ou R$ 1.499 mensal</p>
+                        <span class="plano-bill-info" data-t="p2-bill">Faturado anualmente ou R$ 1.499 mensal</span>
 
-                        <ul class="space-y-4 mb-10">
-                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <ul class="plano-features-list">
+                            <li class="plano-feature-item featured">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p2-li1">Até <strong>15 agentes de suporte</strong></span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item featured">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p2-li2">Gestão de até <strong>1.000 ativos e licenças</strong></span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item featured">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p2-li3"><strong>Roteamento por IA</strong> e automação de SLAs</span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item featured">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p2-li4">Relatórios avançados de custos por ticket</span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item featured">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p2-li5">Integrações privadas (WhatsApp, Slack)</span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-200 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item featured">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p2-li6">Suporte prioritário 24/7</span>
                             </li>
                         </ul>
                     </div>
 
-                    <a href="#contacto" class="w-full py-4 px-6 rounded-2xl bg-white hover:bg-slate-100 text-dark-950 font-bold text-sm shadow-[0_0_25px_rgba(255,255,255,0.3)] hover:shadow-[0_0_35px_rgba(255,255,255,0.5)] transition-all duration-300 flex items-center justify-center gap-2 group mt-auto">
+                    <a href="#contacto" class="plano-btn group">
                         <span data-t="p2-btn">Começar teste grátis</span>
-                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        <svg class="plano-btn-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
                 </div>
 
                 <!-- Plano 3: Escala -->
-                <div class="glass-card rounded-3xl p-8 sm:p-10 border border-slate-800/80 bg-dark-900/40 flex flex-col justify-between relative glow-hover">
+                <div class="plano-card glow-hover">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="text-xs font-mono text-slate-500 font-semibold tracking-wider">03</span>
+                        <div class="plano-header-top">
+                            <span class="plano-num">03</span>
                         </div>
-                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2" data-t="p3-title">Escala</h3>
-                        <p class="text-xs sm:text-sm text-slate-400 font-light mb-8" data-t="p3-desc">Operações complexas com alta escalabilidade e governança</p>
+                        <h3 class="plano-name" data-t="p3-title">Escala</h3>
+                        <p class="plano-desc" data-t="p3-desc">Operações complexas com alta escalabilidade e governança</p>
                         
-                        <div class="mb-8 pb-8 border-b border-slate-800/80 flex items-baseline gap-2">
-                            <span class="text-5xl sm:text-6xl font-black text-white tracking-tight">Custom</span>
+                        <div class="plano-price-wrapper">
+                            <span class="plano-price">Custom</span>
                         </div>
 
-                        <ul class="space-y-4 mb-10">
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        <ul class="plano-features-list">
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p3-li1">Agentes, chamados e ativos <strong>ilimitados</strong></span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p3-li2">Integração com <strong>ERPs (SAP, TOTVS, Oracle)</strong></span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p3-li3"><strong>Aprovação multinível</strong> e orçamento avançado</span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p3-li4">Roteamento e automação de IA customizada</span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p3-li5">Deploy On-premise ou Nuvem Privada</span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p3-li6">Garantia de SLA contratual (99.99%)</span>
                             </li>
-                            <li class="flex items-center gap-3 text-sm text-slate-300 font-light">
-                                <svg class="w-4 h-4 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                            <li class="plano-feature-item">
+                                <svg class="plano-feature-icon" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
                                 <span data-t="p3-li7">Gerente de conta dedicado VIP 24/7</span>
                             </li>
                         </ul>
                     </div>
 
-                    <a href="#contacto" class="w-full py-4 px-6 rounded-2xl bg-slate-900/80 hover:bg-slate-800 border border-slate-700/80 hover:border-slate-600 text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 group mt-auto">
+                    <a href="#contacto" class="plano-btn group">
                         <span data-t="p3-btn">Falar com vendas</span>
-                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        <svg class="plano-btn-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                     </a>
                 </div>
             </div>
@@ -956,35 +956,35 @@
     <!-- ==================================================================== -->
     <!-- SEÇÃO 6: RODAPÉ E FORMULÁRIO DE CONTATO                              -->
     <!-- ==================================================================== -->
-    <footer id="contacto" class="relative py-16 sm:py-24 lg:py-32 border-t border-slate-800/50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+    <footer id="contacto" class="footer-section">
+        <div class="footer-container">
+            <div class="footer-grid">
                 <!-- Formulário -->
-                <div class="glass-card rounded-2xl p-6 sm:p-8">
-                    <h3 class="text-xl font-bold text-white mb-6" data-t="foot-h3-1">Fale Conosco</h3>
-                    <form id="contact-form" class="space-y-4">
-                        <input type="text" placeholder="Insira o seu nome completo" data-translate-placeholder="name" class="w-full bg-dark-800/80 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
-                        <input type="email" placeholder="Insira o seu e-mail" data-translate-placeholder="email" class="w-full bg-dark-800/80 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500">
-                        <textarea rows="4" placeholder="Mensagem" data-translate-placeholder="msg" class="w-full bg-dark-800/80 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 resize-none focus:outline-none focus:border-indigo-500"></textarea>
-                        <button type="submit" class="btn-glow text-sm font-semibold text-white px-6 py-3 rounded-full" data-t="foot-btn">ENVIAR MENSAGEM</button>
+                <div class="footer-card glass-card">
+                    <h3 class="footer-title" data-t="foot-h3-1">Fale Conosco</h3>
+                    <form id="contact-form" class="footer-form">
+                        <input type="text" placeholder="Insira o seu nome completo" data-translate-placeholder="name" class="footer-input">
+                        <input type="email" placeholder="Insira o seu e-mail" data-translate-placeholder="email" class="footer-input">
+                        <textarea rows="4" placeholder="Mensagem" data-translate-placeholder="msg" class="footer-input footer-textarea"></textarea>
+                        <button type="submit" class="footer-submit-btn btn-glow" data-t="foot-btn">ENVIAR MENSAGEM</button>
                     </form>
                 </div>
 
                 <!-- Informações -->
-                <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-center">
-                    <img src="assets/logo-sem-fundo-removebg-preview.png" alt="Deskify" class="h-10 w-auto object-contain self-start mb-6 opacity-95">
-                    <h3 class="text-xl font-bold text-white mb-6" data-t="foot-h3-2">Informações de Contato</h3>
-                    <p class="text-slate-300 text-sm mb-4" data-t="foot-desc">Estamos prontos para demonstrar como o Deskify pode transformar a gestão de suporte, ativos e despesas da sua empresa.</p>
-                    <p class="text-white font-semibold text-base mb-1">+55 (11) 9 4567-8901</p>
-                    <p class="text-slate-400 text-sm mb-4">contato@deskify.com.br</p>
-                    <p class="text-slate-500 text-xs">São Paulo, Brasil — Av. Paulista, 1578</p>
+                <div class="footer-card glass-card flex-col">
+                    <img src="assets/logo-sem-fundo-removebg-preview.png" alt="Deskify" class="footer-logo">
+                    <h3 class="footer-title" data-t="foot-h3-2">Informações de Contato</h3>
+                    <p class="footer-desc" data-t="foot-desc">Estamos prontos para demonstrar como o Deskify pode transformar a gestão de suporte, ativos e despesas da sua empresa.</p>
+                    <p class="footer-phone">+55 (11) 9 4567-8901</p>
+                    <p class="footer-email">contato@deskify.com.br</p>
+                    <p class="footer-address">São Paulo, Brasil — Av. Paulista, 1578</p>
                 </div>
             </div>
 
             <!-- Direitos Autorais -->
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-slate-800/50">
-                <p class="text-xs text-slate-500" data-t="foot-copy">© 2026 Deskify. Todos os direitos reservados.</p>
-                <a href="#hero" class="text-xs text-orange-400 hover:text-orange-300" data-t="foot-top">Voltar ao topo ↑</a>
+            <div class="footer-bottom">
+                <p class="footer-copy" data-t="foot-copy">© 2026 Deskify. Todos os direitos reservados.</p>
+                <a href="#hero" class="footer-top-link" data-t="foot-top">Voltar ao topo ↑</a>
             </div>
         </div>
     </footer>
